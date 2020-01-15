@@ -191,7 +191,10 @@ ethercatmcAxis::ethercatmcAxis(ethercatmcController *pC, int axisNo,
   }
   /* Set the module name to "" if we have FILE/LINE enabled by asyn */
   if (pasynTrace->getTraceInfoMask(pC_->pasynUserController_) & ASYN_TRACEINFO_SOURCE) modNamEMC = "";
-  initialPoll();
+  // We can not call // initialPoll here: the poll is dependent on the features.
+  // // So wait until the controller has read the features (common for all axes)
+  // // and then the polling will start from the poller thread
+  //initialPoll();
 }
 
 
