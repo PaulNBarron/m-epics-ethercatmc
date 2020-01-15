@@ -113,6 +113,8 @@ else
     PYTHON=python37
   elif which python3.6 >/dev/null 2>&1; then
     PYTHON=python3.6
+  elif which python3.5 >/dev/null 2>&1; then
+    PYTHON=python3.5
   elif which python36 >/dev/null 2>&1; then
     PYTHON=python36
   elif which python3.4 >/dev/null 2>&1; then
