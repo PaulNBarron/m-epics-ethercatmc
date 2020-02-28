@@ -217,6 +217,7 @@ indexerDeviceAbsStraction_type indexerDeviceAbsStraction[NUM_DEVICES] =
         "", "", "", "", "", "", "", ""},
       0.0, 0.0
     },
+#if MORE_THAN_2015_
     /* special device */
     { TYPECODE_SPECIALDEVICE_0518, 2*WORDS_SPECIALDEVICE_0518,
       UNITCODE_NONE, AXISNO_NONE,
@@ -227,6 +228,7 @@ indexerDeviceAbsStraction_type indexerDeviceAbsStraction[NUM_DEVICES] =
         "", "", "", "", "", "", "", ""},
       0.0, 0.0
     },
+#endif
     { TYPECODE_PARAMDEVICE_5008, 2*WORDS_PARAMDEVICE_5008,
       UNITCODE_MM, 1,
       {0, 0,
@@ -295,7 +297,9 @@ indexerDeviceAbsStraction_type indexerDeviceAbsStraction[NUM_DEVICES] =
         "", "", "", "", "", "", "", "",
         "", "", "", "", "", "", "", "notHomed"},
       0, +173.0
-    },
+    }
+#if MORE_THAN_2015_2
+    ,
     { TYPECODE_PARAMDEVICE_5010, 2*WORDS_PARAMDEVICE_5010,
       UNITCODE_MM, 4,
       {PARAM_AVAIL_0_7_OPMODE_AUTO_UINT32, 0,
@@ -319,6 +323,7 @@ indexerDeviceAbsStraction_type indexerDeviceAbsStraction[NUM_DEVICES] =
         "", "", "", "", "", "", "", "notHomed"},
       0, +163.0
     }
+#endif
   };
 
 
@@ -341,7 +346,9 @@ static union {
       netInfoType4_type  infoType4;
       netInfoType15_type infoType15;
     } indexer;
+#if MORE_THAN_2015_2
     netDevice0518interface_type special0518; /* 42 bytes for ASCII to the simulator */
+#endif
     /* Remember that motor[0] is defined, but never used */
     netDevice5008interface_type motors5008[NUM_MOTORS5008];
     netDevice5010interface_type motors5010[NUM_MOTORS5010];
@@ -1251,6 +1258,7 @@ void indexerHandlePLCcycle(void)
         }
       }
       break;
+#if MORE_THAN_2015_2
     case TYPECODE_SPECIALDEVICE_0518:
       {
         uint16_t ctrl_word = NETTOUINT(netData.memoryStruct.special0518.control);
@@ -1293,6 +1301,7 @@ void indexerHandlePLCcycle(void)
         }
       }
       break;
+#endif
     default:
       break;
     }
