@@ -68,6 +68,5 @@ class Test(unittest.TestCase):
             self.assertEqual(0, mstaE & lib.MSTA_BIT_MINUS_LS,   'LLS should not be active')
             self.assertNotEqual(0, mstaE & lib.MSTA_BIT_PLUS_LS, 'HLS should be active')
             self.assertEqual(1, done1,                           'moveWait1 should return done')
-            self.assertEqual(1, done2,                           'moveWait2 should return done')
 
 
